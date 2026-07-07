@@ -78,10 +78,16 @@ a {
     grid-template-columns: minmax(0, 680px) 1fr
 }
 
-.promo-brand {
+.promo-brand-row {
     display: inline-flex;
     align-items: center;
+    gap: 24px;
     margin-bottom: 34px
+}
+
+.promo-brand {
+    display: inline-flex;
+    align-items: center
 }
 
 .promo-brand img {
@@ -93,7 +99,6 @@ a {
 .partner-pill {
     width: max-content;
     display: inline-flex;
-    margin-left: 50px;
     align-items: center;
     gap: 10px;
     border: 1px solid rgba(255, 90, 31, .75);
@@ -537,6 +542,13 @@ a {
 @media(max-width:680px) {
     .container {
         width: min(100% - 30px, var(--max))
+    }
+
+    .promo-brand-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center
     }
 
     .promo-brand img {
