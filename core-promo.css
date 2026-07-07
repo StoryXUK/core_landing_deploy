@@ -80,23 +80,14 @@ a {
 
 .promo-brand {
     display: inline-flex;
-    align-items: flex-end;
-    gap: 14px;
+    align-items: center;
     margin-bottom: 34px
 }
 
-.promo-brand span {
-    color: var(--orange);
-    font-size: 56px;
-    line-height: .82;
-    font-weight: 950;
-    letter-spacing: -.06em
-}
-
-.promo-brand small {
-    font-size: 20px;
-    line-height: 1.04;
-    font-weight: 850
+.promo-brand img {
+    display: block;
+    width: min(230px, 58vw);
+    height: auto
 }
 
 .partner-pill {
@@ -547,8 +538,8 @@ a {
         width: min(100% - 30px, var(--max))
     }
 
-    .promo-brand span {
-        font-size: 44px
+    .promo-brand img {
+        width: min(190px, 58vw)
     }
 
     .promo-copy h1 {
