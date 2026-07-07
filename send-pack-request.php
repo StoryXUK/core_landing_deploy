@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-  http_response_code(405);
-  exit("Method not allowed");
+  header("Location: index-edu.html?pack=error#pack");
+  exit;
 }
 
 $to = "jake.shand@fibodo.com, james.murphy@fibodo.com";
@@ -15,9 +15,9 @@ $type = htmlspecialchars(trim($_POST["organisation_type"] ?? ""));
 $learners = htmlspecialchars(trim($_POST["learners"] ?? ""));
 $message = htmlspecialchars(trim($_POST["message"] ?? ""));
 
-if (!$firstName || !$lastName || !$email || !$organisation || !$type || !$learners) {
-  http_response_code(400);
-  exit("Please complete all required fields.");
+if (!$firstName || !$lastName || !$email || !$organisation || !$type || !$learners || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  header("Location: index-edu.html?pack=error#pack");
+  exit;
 }
 
 $body = "
@@ -37,10 +37,10 @@ $headers = "From: CORE Ready <no-reply@fibodo.com>\r\n";
 $headers .= "Reply-To: $email\r\n";
 
 if (mail($to, $subject, $body, $headers)) {
-  header("Location: thank-you.html");
+  header("Location: index-edu.html?pack=success#pack");
   exit;
 } else {
-  http_response_code(500);
-  exit("Sorry, something went wrong. Please try again.");
+  header("Location: index-edu.html?pack=error#pack");
+  exit;
 }
 ?>

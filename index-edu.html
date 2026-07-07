@@ -11,6 +11,28 @@
     rel="stylesheet">
   <link rel="stylesheet" href="core_css/main.css" />
   <link rel="stylesheet" href="core_css/main-edu.css" />
+  <style>
+    .form-status {
+      display: none;
+      margin: 0 0 16px;
+      border: 1px solid rgba(215, 255, 0, .48);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: rgba(215, 255, 0, .08);
+      color: var(--white);
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .form-status.is-visible {
+      display: block;
+    }
+
+    .form-status.is-error {
+      border-color: rgba(255, 75, 18, .58);
+      background: rgba(255, 75, 18, .1);
+    }
+  </style>
 </head>
 
 <body>
@@ -163,7 +185,14 @@
             <p>Everything you need to explore a partnership and strengthen learner outcomes.</p>
           </div>
         </div>
-        <form class="signup-form" action="send-pack-request.php" method="POST">
+        <form class="signup-form" action="https://formsubmit.co/jake.shand@fibodo.com" method="POST">
+          <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+          <input type="hidden" name="_cc" value="james.murphy@fibodo.com">
+          <input type="hidden" name="_subject" value="CORE Ready Educator Information Pack Request">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="index-edu.html?pack=success#pack" data-form-next>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
           <div class="form-grid">
             <input name="first_name" placeholder="First name*" required>
             <input name="last_name" placeholder="Last name*" required>
@@ -203,6 +232,31 @@
       </div>
     </section>
   </main>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('pack');
+      const statusEl = document.querySelector('[data-form-status]');
+      const nextUrl = document.querySelector('[data-form-next]');
+
+      if (nextUrl) {
+        nextUrl.value = window.location.origin + window.location.pathname + '?pack=success#pack';
+      }
+
+      if (!status || !statusEl) {
+        return;
+      }
+
+      if (status === 'success') {
+        statusEl.textContent = 'Thanks, your request has been sent. We will follow up with the CORE Ready educator information pack.';
+      } else {
+        statusEl.textContent = 'Sorry, your request could not be sent. Please check the required fields and try again.';
+        statusEl.classList.add('is-error');
+      }
+
+      statusEl.classList.add('is-visible');
+    }());
+  </script>
 </body>
 
 </html>
