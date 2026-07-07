@@ -93,6 +93,7 @@ a {
 .partner-pill {
     width: max-content;
     display: inline-flex;
+    margin-left: 50px;
     align-items: center;
     gap: 10px;
     border: 1px solid rgba(255, 90, 31, .75);
