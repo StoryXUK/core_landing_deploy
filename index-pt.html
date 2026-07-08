@@ -292,6 +292,7 @@
           <input type="hidden" name="_template" value="table">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="index-pt.html?signup=success#signup" data-form-next>
+          <input type="hidden" name="_url" value="index-pt.html#signup" data-form-url>
           <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
           <div class="form-grid">
             <input name="first_name" placeholder="First name*" required>
@@ -340,9 +341,14 @@
       const status = params.get('signup');
       const statusEl = document.querySelector('[data-form-status]');
       const nextUrl = document.querySelector('[data-form-next]');
+      const formUrl = document.querySelector('[data-form-url]');
 
       if (nextUrl) {
         nextUrl.value = window.location.origin + window.location.pathname + '?signup=success#signup';
+      }
+
+      if (formUrl) {
+        formUrl.value = window.location.origin + window.location.pathname + '#signup';
       }
 
       if (!status || !statusEl) {
