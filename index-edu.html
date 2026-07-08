@@ -38,7 +38,13 @@
       background: #030605;
     }
 
+    .hero::before,
+    .hero::after {
+      content: none;
+    }
+
     .hero-bg {
+      display: block;
       z-index: 0;
       background:
         linear-gradient(90deg, rgba(5, 5, 5, .92) 0%, rgba(5, 5, 5, .78) 38%, rgba(5, 5, 5, .20) 66%, rgba(5, 5, 5, .34) 100%),
@@ -92,7 +98,7 @@
 
         <div class="hero-visual" aria-label="CORE Ready dashboard preview">
           <div class="hero-person"></div>
-          <img class="shield" src="assets/Built-Different.webp" alt="Built Different">
+          <!-- <img class="shield" src="assets/Built-Different.webp" alt="Built Different"> -->
           <div class="metric-card metric-one"><small>Bookings</small><strong>24</strong><span>This week</span></div>
           <div class="metric-card metric-two"><small>Payments</small><strong>£1,240</strong><span>Collected</span></div>
           <div class="metric-card metric-three"><small>Clients</small><strong>18</strong><span>Active</span></div>

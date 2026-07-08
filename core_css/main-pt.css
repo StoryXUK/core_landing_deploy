@@ -116,7 +116,13 @@ a {
   padding: 130px 0 70px
 }
 
+.hero::before,
+.hero::after {
+  content: none;
+}
+
 .hero-bg {
+  display: block;
   position: absolute;
   inset: 0;
   z-index: 0;
