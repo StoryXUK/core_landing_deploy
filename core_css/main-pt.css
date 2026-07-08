@@ -111,21 +111,25 @@ a {
   align-items: center;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
+  background: #030605;
   padding: 130px 0 70px
 }
 
 .hero-bg {
   position: absolute;
   inset: 0;
+  z-index: 0;
   background:
-    linear-gradient(90deg, rgba(5, 5, 5, .94) 0%, rgba(5, 5, 5, .86) 42%, rgba(5, 5, 5, .38) 72%, rgba(5, 5, 5, .76) 100%),
-    linear-gradient(180deg, rgba(5, 5, 5, .1), rgba(5, 5, 5, .88) 94%),
-    url('../assets/Bootcamp.webp') center right/cover no-repeat;
+    linear-gradient(90deg, rgba(5, 5, 5, .92) 0%, rgba(5, 5, 5, .78) 38%, rgba(5, 5, 5, .20) 66%, rgba(5, 5, 5, .34) 100%),
+    linear-gradient(180deg, rgba(5, 5, 5, .04), rgba(5, 5, 5, .86) 94%),
+    url('../assets/Bootcamp.webp') calc(100% + clamp(110px, 11vw, 230px)) center / max(112%, 178vh) auto no-repeat;
   opacity: 1
 }
 
 .hero-grid {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   gap: 54px;
@@ -601,6 +605,13 @@ a {
 }
 
 @media(max-width:900px) {
+  .hero-bg {
+    background:
+      linear-gradient(90deg, rgba(5, 5, 5, .88) 0%, rgba(5, 5, 5, .66) 54%, rgba(5, 5, 5, .36) 100%),
+      linear-gradient(180deg, rgba(5, 5, 5, .08), rgba(5, 5, 5, .88) 94%),
+      url('../assets/Bootcamp.webp') 62% center/cover no-repeat;
+  }
+
   .nav {
     display: none
   }

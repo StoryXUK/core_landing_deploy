@@ -60,7 +60,7 @@ a {
         rgba(3, 6, 5, .00),
         rgba(3, 6, 5, .90) 92%
     ),
-    url('assets/Post-Workout.webp') center right / cover no-repeat;
+    url('assets/Post-Workout.webp') calc(100% + clamp(120px, 12vw, 240px)) center / max(112%, 200vh) auto no-repeat;
 }
 
 .promo-hero:after {

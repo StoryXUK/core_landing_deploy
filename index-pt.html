@@ -141,6 +141,27 @@
       font-size: 0.82rem;
     }
 
+    .form-status {
+      display: none;
+      margin: 0 0 16px;
+      border: 1px solid rgba(215, 255, 0, .48);
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: rgba(215, 255, 0, .08);
+      color: var(--white);
+      font-weight: 850;
+      line-height: 1.45;
+    }
+
+    .form-status.is-visible {
+      display: block;
+    }
+
+    .form-status.is-error {
+      border-color: rgba(255, 75, 18, .58);
+      background: rgba(255, 75, 18, .1);
+    }
+
     @media (max-width: 520px) {
       .promo-modal {
         padding: 16px;
@@ -264,12 +285,30 @@
           <h2>Get news, offers<br>and events.</h2>
           <p>Join the CORE list for useful trainer news, product updates, occasional offers and invitations to events built for people who want to keep improving their business.</p>
         </div>
-        <form class="signup-form">
-          <div class="form-grid"><input placeholder="First name*"><input placeholder="Last name*"><input placeholder="Email address*"><input placeholder="Mobile number (optional)"></div>
-          <select><option>Where are you in your PT journey?</option><option>Newly qualified</option><option>Building a side hustle</option><option>Full-time personal trainer</option><option>Growing a team or studio</option></select>
-          <label><input type="checkbox"> Send me CORE news and product updates.</label>
-          <label><input type="checkbox"> Send me CORE offers and partner benefits.</label>
-          <label><input type="checkbox"> Invite me to CORE events and webinars.</label>
+        <form class="signup-form" action="https://formsubmit.co/jake.shand@fibodo.com" method="POST">
+          <div class="form-status" data-form-status role="status" aria-live="polite"></div>
+          <input type="hidden" name="_cc" value="james.murphy@fibodo.com">
+          <input type="hidden" name="_subject" value="CORE PT Updates Signup">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="index-pt.html?signup=success#signup" data-form-next>
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+          <div class="form-grid">
+            <input name="first_name" placeholder="First name*" required>
+            <input name="last_name" placeholder="Last name*" required>
+            <input name="email" type="email" placeholder="Email address*" required>
+            <input name="mobile" type="tel" placeholder="Mobile number (optional)">
+          </div>
+          <select name="pt_journey" required>
+            <option value="">Where are you in your PT journey?</option>
+            <option>Newly qualified</option>
+            <option>Building a side hustle</option>
+            <option>Full-time personal trainer</option>
+            <option>Growing a team or studio</option>
+          </select>
+          <label><input type="checkbox" name="updates_news" value="yes"> Send me CORE news and product updates.</label>
+          <label><input type="checkbox" name="updates_offers" value="yes"> Send me CORE offers and partner benefits.</label>
+          <label><input type="checkbox" name="updates_events" value="yes"> Invite me to CORE events and webinars.</label>
           <button class="btn btn-primary" type="submit">Keep me in the loop →</button>
           <small>You can unsubscribe at any time. We will only send you the updates you choose.</small>
         </form>
@@ -296,6 +335,30 @@
     </div>
   </div>
   <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('signup');
+      const statusEl = document.querySelector('[data-form-status]');
+      const nextUrl = document.querySelector('[data-form-next]');
+
+      if (nextUrl) {
+        nextUrl.value = window.location.origin + window.location.pathname + '?signup=success#signup';
+      }
+
+      if (!status || !statusEl) {
+        return;
+      }
+
+      if (status === 'success') {
+        statusEl.textContent = 'Thanks, your details have been sent. We will keep you updated with relevant CORE news, offers and events.';
+      } else {
+        statusEl.textContent = 'Sorry, your details could not be sent. Please check the required fields and try again.';
+        statusEl.classList.add('is-error');
+      }
+
+      statusEl.classList.add('is-visible');
+    }());
+
     (function () {
       const modal = document.getElementById('promoModal');
       const closeControls = modal.querySelectorAll('[data-promo-close]');
