@@ -4,6 +4,11 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   exit;
 }
 
+if (!empty($_POST["_honey"] ?? "")) {
+  header("Location: index-edu.html?pack=success#pack");
+  exit;
+}
+
 $to = "jake.shand@fibodo.com, james.murphy@fibodo.com";
 $subject = "CORE Ready Educator Information Pack Request";
 
@@ -35,6 +40,7 @@ $message
 
 $headers = "From: CORE Ready <no-reply@fibodo.com>\r\n";
 $headers .= "Reply-To: $email\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 if (mail($to, $subject, $body, $headers)) {
   header("Location: index-edu.html?pack=success#pack");
