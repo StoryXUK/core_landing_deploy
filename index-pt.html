@@ -1,424 +1,79 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CORE by fibodo | Personal Trainers</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="core_css/main.css" />
-  <link rel="stylesheet" href="core_css/main-pt.css" />
-  <style>
-    .promo-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: grid;
-      place-items: center;
-      padding: 24px;
-      background: rgba(8, 10, 12, 0.72);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 220ms ease, visibility 220ms ease;
-    }
-
-    .promo-modal.is-visible {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .promo-modal__dialog {
-      position: relative;
-      width: min(100%, 520px);
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 8px;
-      background: #111417;
-      color: #fff;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-      transform: translateY(16px) scale(0.98);
-      transition: transform 220ms ease;
-    }
-
-    .promo-modal.is-visible .promo-modal__dialog {
-      transform: translateY(0) scale(1);
-    }
-
-    .promo-modal__content {
-      padding: clamp(28px, 6vw, 44px);
-    }
-
-    .promo-modal__eyebrow {
-      margin: 0 0 14px;
-      color: #d5ff46;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .promo-modal h2 {
-      margin: 0;
-      max-width: 11ch;
-      font-family: Inter, Arial, sans-serif;
-      font-weight: 950;
-      font-size: clamp(2.5rem, 10vw, 5rem);
-      line-height: 0.92;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    .promo-modal__copy {
-      margin: 18px 0 0;
-      max-width: 34rem;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .promo-modal__perks {
-      display: grid;
-      gap: 10px;
-      margin: 24px 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .promo-modal__perks li {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      color: rgba(255, 255, 255, 0.88);
-      font-weight: 700;
-    }
-
-    .promo-modal__perks span {
-      display: grid;
-      flex: 0 0 28px;
-      width: 28px;
-      height: 28px;
-      place-items: center;
-      border-radius: 50%;
-      background: #d5ff46;
-      color: #101214;
-      font-size: 0.9rem;
-      font-weight: 900;
-    }
-
-    .promo-modal__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .promo-modal__close {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      display: grid;
-      width: 40px;
-      height: 40px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      cursor: pointer;
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    .promo-modal__close:hover,
-    .promo-modal__close:focus-visible {
-      background: rgba(255, 255, 255, 0.16);
-    }
-
-    .promo-modal__note {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.56);
-      font-size: 0.82rem;
-    }
-
-    .form-status {
-      display: none;
-      margin: 0 0 16px;
-      border: 1px solid rgba(215, 255, 0, .48);
-      border-radius: 10px;
-      padding: 14px 16px;
-      background: rgba(215, 255, 0, .08);
-      color: var(--white);
-      font-weight: 850;
-      line-height: 1.45;
-    }
-
-    .form-status.is-visible {
-      display: block;
-    }
-
-    .form-status.is-error {
-      border-color: rgba(255, 75, 18, .58);
-      background: rgba(255, 75, 18, .1);
-    }
-
-    @media (max-width: 520px) {
-      .promo-modal {
-        padding: 16px;
-      }
-
-      .promo-modal__actions .btn {
-        width: 100%;
-        justify-content: center;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CORE Partner Offer</title>
+<link rel="stylesheet" href="core-promo.css">
 </head>
 <body>
-  <header class="site-header">
-    <a href="index.html" class="brand"><img src="assets/core-logo-light.png" alt="CORE by fibodo" /></a>
-    <nav class="nav">
-      <a href="#includes">What you get</a>
-      <a href="#how">How it works</a>
-      <a href="#signup">Updates</a>
-    </nav>
-    <a href="#signup" class="header-cta">Get updates</a>
-  </header>
-
-  <main>
-    <section class="hero section-dark">
-      <div class="hero-bg"></div>
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">Made for the <span data-rotating-role>Trainer.</span></span>
-          <h1>Focus on training.<br><span>We’ll handle the rest.</span></h1>
-          <p class="hero-text">CORE gives you the essential tools to run your PT business in one place: bookings, payments, clients and your own website.</p>
-          <p class="hero-sub">Get set up quickly. Look professional from day one. Spend less time chasing admin and more time building the business you came here to build.</p>
-          <div class="hero-actions">
-            <a href="#signup" class="btn btn-primary">Get news, offers & events <span>→</span></a>
-            <a href="#includes" class="btn btn-ghost">See what CORE includes</a>
-          </div>
-          <div class="proof-line">
-            <span>£25 per month</span><span>Your website included</span><span>£0 hosting costs</span><span>No unnecessary complexity</span>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="CORE dashboard preview">
-          <div class="price-card">
-            <small>All included</small>
-            <strong>£25</strong><span>/month</span>
-          </div>
-          <div class="phone-card">
-            <div class="phone-top"><strong>CORE</strong><span>Dashboard</span></div>
-            <div class="metric-row"><div><small>Today</small><strong>£720</strong></div><div><small>Bookings</small><strong>8</strong></div></div>
-            <div class="booking"><span></span><p>Sarah M.</p><b>10:00am</b></div>
-            <div class="booking"><span></span><p>Tom R.</p><b>12:00pm</b></div>
-            <div class="booking"><span></span><p>Emma K.</p><b>4:00pm</b></div>
-          </div>
-          <div class="floating-card card-one"><small>Payment received</small><strong>£180.00</strong><span>From Sarah M.</span></div>
-          <div class="floating-card card-two"><small>Upcoming session</small><strong>Today · 10:00am</strong><span>One-to-One PT</span></div>
-          <div class="floating-card card-three"><small>New booking</small><strong>£240.00</strong><span>Programme booked</span></div>
-        </div>
+<main class="promo-page">
+<section class="promo-hero">
+  <div class="promo-bg"></div>
+  <div class="container hero-layout">
+    <div class="promo-copy">
+      <div class="promo-brand-row">
+        <a class="promo-brand" href="index.html"><img src="assets/core-logo-light.png" alt="CORE by fibodo"></a>
+        <div class="partner-pill"><span></span>Exclusive partner offer</div>
       </div>
-    </section>
-
-    <section id="includes" class="section section-light">
-      <div class="container split-heading">
-        <p class="section-number">02</p>
-        <div>
-          <p class="eyebrow">What you get</p>
-          <h2>All the tools.<br>Zero headaches.</h2>
-          <p class="section-intro">CORE is your business foundation. Everything you need to get booked, get paid and keep moving — without stitching together different systems, subscriptions and logins.</p>
-        </div>
-      </div>
-      <div class="container feature-grid">
-        <article class="feature-card"><div class="icon">£</div><h3>Payments that help stop cancellations</h3><p>Take payment when clients book. No more holding time in your diary for people who “might” turn up. Just clearer commitment and more reliable income.</p></article>
-        <article class="feature-card featured"><div class="icon">⌂</div><h3>Your free website. Live in minutes.</h3><p>Build it in minutes, add what you offer, share your booking link and give clients a straightforward way to find you, trust you and book with you.</p></article>
-        <article class="feature-card"><div class="icon">↗</div><h3>Bookings that work while you coach</h3><p>Let clients see your availability, book online and pay before your time is taken. Your diary stays live. Your business stays open.</p></article>
-        <article class="feature-card"><div class="icon">●</div><h3>Clients. All in one place.</h3><p>Keep client details, bookings, payments and messages together, so you can respond quickly and stay in control.</p></article>
-      </div>
-      <div class="container included-strip">Bookings · Payments · Clients · Your website <strong>All included in CORE for £25/month</strong></div>
-    </section>
-
-    <section id="how" class="section section-dark process-section">
-      <div class="container process-grid">
-        <div>
-          <p class="section-number">03</p>
-          <p class="eyebrow">How it works</p>
-          <h2>Get set up.<br>Get booked.<br>Get paid.</h2>
-          <div class="steps">
-            <article><span>01</span><h3>Set up what you sell</h3><p>Add your one-to-one sessions, packs, memberships, programmes or classes.</p></article>
-            <article><span>02</span><h3>Build your website</h3><p>Create a professional online home for your business. Make it live and easy to share.</p></article>
-            <article><span>03</span><h3>Share and book</h3><p>Send clients your link. They choose a time, book their session and pay securely.</p></article>
-            <article><span>04</span><h3>Keep moving</h3><p>Manage your diary, clients and payments from one simple platform.</p></article>
-          </div>
-        </div>
-        <aside class="pricing-panel">
-          <p>CORE is</p><strong>£25<span>/month</span></strong>
-          <ul>
-            <li>Bookings</li><li>Payments</li><li>Clients</li><li>Your website</li><li>Memberships and packs</li><li>One simple platform</li>
-          </ul>
-          <a href="#signup" class="btn btn-primary">Start with CORE →</a>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section section-light outcome-section">
-      <div class="container">
-        <p class="section-number">04</p>
-        <p class="eyebrow">The outcome</p>
-        <h2>More time.<br>More control.<br>More room to grow.</h2>
-        <div class="outcome-grid">
-          <article><span>◷</span><h3>Save hours</h3><p>Spend less time managing diaries, chasing messages and following up payments.</p></article>
-          <article><span>✓</span><h3>Protect your time</h3><p>Take payment at the point of booking and make your diary work harder for you.</p></article>
-          <article><span>★</span><h3>Look more professional</h3><p>A proper website, clear booking journey and a presence clients can trust.</p></article>
-          <article><span>↟</span><h3>Build your name</h3><p>Make it easy for people to book again, recommend you and come back.</p></article>
-        </div>
-        <div class="closing-panel"><h3>Made for the trainer. Ready to grow with you.</h3><p>CORE is built to help personal trainers run a more professional business — whether you are starting out, building a side hustle or filling a diary that is already moving.</p></div>
-      </div>
-    </section>
-
-    <section id="signup" class="section signup-section">
-      <div class="container signup-grid">
-        <div>
-          <p class="eyebrow">Stay in the know</p>
-          <h2>Get news, offers<br>and events.</h2>
-          <p>Join the CORE list for useful trainer news, product updates, occasional offers and invitations to events built for people who want to keep improving their business.</p>
-        </div>
-        <form class="signup-form" action="https://formsubmit.co/jake.shand@fibodo.com" method="POST">
-          <div class="form-status" data-form-status role="status" aria-live="polite"></div>
-          <input type="hidden" name="_cc" value="james.murphy@fibodo.com">
-          <input type="hidden" name="_subject" value="CORE PT Updates Signup">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="index-pt.html?signup=success#signup" data-form-next>
-          <input type="hidden" name="_url" value="index-pt.html#signup" data-form-url>
-          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
-          <div class="form-grid">
-            <input name="first_name" placeholder="First name*" required>
-            <input name="last_name" placeholder="Last name*" required>
-            <input name="email" type="email" placeholder="Email address*" required>
-            <input name="mobile" type="tel" placeholder="Mobile number (optional)">
-          </div>
-          <select name="pt_journey" required>
-            <option value="">Where are you in your PT journey?</option>
-            <option>Newly qualified</option>
-            <option>Building a side hustle</option>
-            <option>Full-time personal trainer</option>
-            <option>Growing a team or studio</option>
-          </select>
-          <label><input type="checkbox" name="updates_news" value="yes"> Send me CORE news and product updates.</label>
-          <label><input type="checkbox" name="updates_offers" value="yes"> Send me CORE offers and partner benefits.</label>
-          <label><input type="checkbox" name="updates_events" value="yes"> Invite me to CORE events and webinars.</label>
-          <button class="btn btn-primary" type="submit">Keep me in the loop →</button>
-          <small>You can unsubscribe at any time. We will only send you the updates you choose.</small>
-        </form>
-      </div>
-    </section>
-  </main>
-  <div class="promo-modal" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="promoModalTitle" aria-hidden="true">
-    <div class="promo-modal__dialog" role="document">
-      <button class="promo-modal__close" type="button" aria-label="Close offer" data-promo-close>&times;</button>
-      <div class="promo-modal__content">
-        <p class="promo-modal__eyebrow">Limited CORE offer</p>
-        <h2 id="promoModalTitle">First month half price</h2>
-        <p class="promo-modal__copy">Start with CORE for just £12.50 in your first month and get your free app included, so clients can book, pay and keep coming back.</p>
-        <ul class="promo-modal__perks" aria-label="Offer includes">
-          <li><span>£</span> First month half price</li>
-          <li><span>✓</span> Free app included</li>
-          <li><span>↗</span> Bookings, payments and clients in one place</li>
-        </ul>
-        <div class="promo-modal__actions">
-          <a href="#signup" class="btn btn-primary" data-promo-close>Claim the offer <span>→</span></a>
-          <p class="promo-modal__note">CORE is £25/month after your first month.</p>
-        </div>
+      <h1>Everything you need.<br>All in one platform.<br><em>Unlimited</em> clients.<br><em>Unlimited</em> potential.</h1>
+      <p class="hero-text">CORE gives you the complete business operating system to run, grow and scale your coaching business. No more juggling tools. No more hidden costs. Just one powerful platform that does it all.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://web.fibodo.com/signup/information?app=c1">Start with CORE →</a>
+        <div class="guarantee"><span>✓</span>14-day money-back guarantee</div>
       </div>
     </div>
   </div>
-  <script>
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      const status = params.get('signup');
-      const statusEl = document.querySelector('[data-form-status]');
-      const nextUrl = document.querySelector('[data-form-next]');
-      const formUrl = document.querySelector('[data-form-url]');
+</section>
 
-      if (nextUrl) {
-        nextUrl.value = window.location.origin + window.location.pathname + '?signup=success#signup';
-      }
+<section class="offer-section">
+  <div class="container offer-grid">
+    <article class="offer-card discount">
+      <span>First month</span><strong>50% OFF</strong><div class="offer-divider"></div>
+      <p>Just</p><b>£12.50</b><small>/ month</small><footer>Use code: CORE50</footer>
+    </article>
+    <article class="offer-card monthly">
+      <span>Then just</span><strong>£25</strong><small>/ month</small>
+      <ul><li>Everything included</li><li>Unlimited clients</li><li>No setup fees</li><li>Cancel anytime</li></ul>
+    </article>
+  </div>
+</section>
 
-      if (formUrl) {
-        formUrl.value = window.location.origin + window.location.pathname + '#signup';
-      }
+<section class="app-section">
+  <div class="container app-panel">
+    <div class="panel-title"><i></i><span>App section</span><i></i></div>
+    <div class="app-grid">
+      <article class="app-block">
+        <div class="app-icon">C</div>
+        <div><span class="orange-label">Client App</span><h2>£0 <small>for 12 months</small></h2><p class="muted">(usually £20 p/month)</p><p>Give your clients the best experience with the CORE Client App — free for 12 months.</p><div class="store-row"><span>Download on the<br><b>App Store</b></span><span>Get it on<br><b>Google Play</b></span></div></div>
+      </article>
+      <div class="app-plus">+</div>
+      <article class="app-block">
+        <div class="phone-mock">F4B</div>
+        <div><span class="lime-label">F4B Business App</span><h2>FOC <small>forever</small></h2><p>The F4B / fibodo for Business app is included with your subscription, forever.</p><div class="store-row"><span>Download on the<br><b>App Store</b></span><span>Get it on<br><b>Google Play</b></span></div></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-      if (!status || !statusEl) {
-        return;
-      }
+<section class="benefits-section">
+  <div class="container benefits-grid">
+    <article><span>£</span><h3>Embedded payments</h3><p>Get paid faster, reduce no-shows, and protect your time.</p></article>
+    <article><span>☁</span><h3>No ongoing support costs</h3><p>You don't pay anyone to manage it. Ever. We've got you covered.</p></article>
+    <article><span>↻</span><h3>Free OS updates</h3><p>We update the OS, add new features and keep everything running.</p></article>
+    <article><span>▥</span><h3>Built for growth</h3><p>From 1 client to 1,000+. CORE scales with you, without extra fees.</p></article>
+    <article><span>⌾</span><h3>No hidden costs</h3><p>One platform. One price. No surprises.</p></article>
+  </div>
+</section>
 
-      if (status === 'success') {
-        statusEl.textContent = 'Thanks, your details have been sent. We will keep you updated with relevant CORE news, offers and events.';
-      } else {
-        statusEl.textContent = 'Sorry, your details could not be sent. Please check the required fields and try again.';
-        statusEl.classList.add('is-error');
-      }
-
-      statusEl.classList.add('is-visible');
-    }());
-
-    (function () {
-      const modal = document.getElementById('promoModal');
-      const closeControls = modal.querySelectorAll('[data-promo-close]');
-      const showDelay = 1000;
-      const storageKey = 'corePtPromoModalSeen';
-
-      function hasSeenModal() {
-        try {
-          return window.localStorage.getItem(storageKey) === 'true';
-        } catch (error) {
-          return false;
-        }
-      }
-
-      function markModalSeen() {
-        try {
-          window.localStorage.setItem(storageKey, 'true');
-        } catch (error) {
-          // Storage can be unavailable in private browsing or strict privacy modes.
-        }
-      }
-
-      function openModal() {
-        markModalSeen();
-        modal.classList.add('is-visible');
-        modal.setAttribute('aria-hidden', 'false');
-        modal.querySelector('.promo-modal__close').focus();
-      }
-
-      function closeModal() {
-        modal.classList.remove('is-visible');
-        modal.setAttribute('aria-hidden', 'true');
-      }
-
-      if (!hasSeenModal()) {
-        window.setTimeout(openModal, showDelay);
-      }
-
-      closeControls.forEach(function (control) {
-        control.addEventListener('click', closeModal);
-      });
-
-      modal.addEventListener('click', function (event) {
-        if (event.target === modal) {
-          closeModal();
-        }
-      });
-
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && modal.classList.contains('is-visible')) {
-          closeModal();
-        }
-      });
-    }());
-  </script>
+<section id="start" class="final-promise">
+  <div class="container promise-panel">
+    <div class="shield">✓</div>
+    <div><h2>One platform. One price. Everything you need.</h2><p>No limits. No hidden costs. Just results.</p></div>
+    <a class="btn btn-primary" href="https://web.fibodo.com/signup/information?app=c1">Start with CORE →</a>
+  </div>
+</section>
+</main>
+<script src="core-promo.js"></script>
 </body>
 </html>
