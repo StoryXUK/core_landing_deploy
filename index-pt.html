@@ -363,8 +363,26 @@
       const modal = document.getElementById('promoModal');
       const closeControls = modal.querySelectorAll('[data-promo-close]');
       const showDelay = 1000;
+      const storageKey = 'corePtPromoModalSeen';
+
+      function hasSeenModal() {
+        try {
+          return window.localStorage.getItem(storageKey) === 'true';
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function markModalSeen() {
+        try {
+          window.localStorage.setItem(storageKey, 'true');
+        } catch (error) {
+          // Storage can be unavailable in private browsing or strict privacy modes.
+        }
+      }
 
       function openModal() {
+        markModalSeen();
         modal.classList.add('is-visible');
         modal.setAttribute('aria-hidden', 'false');
         modal.querySelector('.promo-modal__close').focus();
@@ -375,7 +393,9 @@
         modal.setAttribute('aria-hidden', 'true');
       }
 
-      window.setTimeout(openModal, showDelay);
+      if (!hasSeenModal()) {
+        window.setTimeout(openModal, showDelay);
+      }
 
       closeControls.forEach(function (control) {
         control.addEventListener('click', closeModal);
