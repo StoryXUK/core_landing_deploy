@@ -126,7 +126,7 @@ body.has-package-modal {
   overflow: hidden;
   min-height: 390px;
   display: grid;
-  grid-template-rows: 54px 64px 28px minmax(120px, 1fr) auto auto;
+  grid-template-rows: 54px 36px 28px minmax(120px, 1fr) auto auto;
   gap: 14px;
   align-items: start;
   border: 1px solid rgba(255,255,255,.13);
@@ -175,12 +175,13 @@ body.has-package-modal {
 }
 
 .explainer-card h3 {
-  align-self: end;
+  align-self: start;
   margin: 0;
   color: #fff;
-  font-size: clamp(25px, 2.25vw, 34px);
+  font-size: clamp(24px, 1.75vw, 28px);
   line-height: .94;
   letter-spacing: -.06em;
+  white-space: nowrap;
 }
 
 .package-availability {
