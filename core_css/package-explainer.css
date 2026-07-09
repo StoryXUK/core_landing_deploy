@@ -124,9 +124,11 @@ body.has-package-modal {
 .explainer-card {
   position: relative;
   overflow: hidden;
-  min-height: 320px;
-  display: flex;
-  flex-direction: column;
+  min-height: 390px;
+  display: grid;
+  grid-template-rows: 54px 64px 28px minmax(120px, 1fr) auto auto;
+  gap: 14px;
+  align-items: start;
   border: 1px solid rgba(255,255,255,.13);
   border-radius: 32px;
   padding: 26px;
@@ -173,7 +175,8 @@ body.has-package-modal {
 }
 
 .explainer-card h3 {
-  margin: auto 0 14px;
+  align-self: end;
+  margin: 0;
   color: #fff;
   font-size: clamp(25px, 2.25vw, 34px);
   line-height: .94;
@@ -183,7 +186,7 @@ body.has-package-modal {
 .package-availability {
   display: inline-flex;
   width: fit-content;
-  margin: 0 0 16px;
+  margin: 0;
   border: 1px solid color-mix(in srgb, var(--accent), white 22%);
   border-radius: 999px;
   padding: 7px 10px;
@@ -196,8 +199,12 @@ body.has-package-modal {
   text-transform: uppercase;
 }
 
+.package-availability-placeholder {
+  visibility: hidden;
+}
+
 .explainer-card p {
-  margin: 0 0 24px;
+  margin: 0;
   color: rgba(255,255,255,.66);
   font-size: 15px;
   line-height: 1.58;
@@ -206,7 +213,7 @@ body.has-package-modal {
 .explainer-card small {
   display: inline-flex;
   width: fit-content;
-  margin-top: auto;
+  margin: 0;
   border: 1px solid rgba(255,255,255,.14);
   border-radius: 999px;
   padding: 8px 11px;
@@ -222,7 +229,7 @@ body.has-package-modal {
   position: relative;
   z-index: 1;
   width: fit-content;
-  margin-top: 16px;
+  margin: 0;
   display: inline-flex;
   align-items: center;
   gap: 9px;
